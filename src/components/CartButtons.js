@@ -7,7 +7,22 @@ import { useCartContext } from '../context/cart_context'
 import { useUserContext } from '../context/user_context'
 
 const CartButtons = () => {
-  return <h4>cart buttons </h4>
+  const { closeSidebar, isSidebarOpen } = useProductsContext()
+
+  return (
+    <Wrapper className='cart-btn-wrapper'>
+      <Link to='/cart' className='cart-btn' onClick={closeSidebar}>
+        Cart
+        <span className='btn-container'>
+          <FaShoppingCart />
+          <span className='cart-value'>12</span>
+        </span>
+      </Link>
+      <button type='button' className='auth-btn'>
+        Login <FaUserPlus />
+      </button>
+    </Wrapper>
+  )
 }
 
 const Wrapper = styled.div`
@@ -35,15 +50,15 @@ const Wrapper = styled.div`
     }
   }
   .cart-value {
-    position: absolute;
+    position: relative;
     top: -10px;
     right: -16px;
     background: var(--clr-primary-5);
     width: 16px;
     height: 16px;
     display: flex;
-    align-items: center;
-    justify-content: center;
+    -webkit-align-items: center;
+    -webkit-justify-content: center;
     border-radius: 50%;
     font-size: 0.75rem;
     color: var(--clr-white);
