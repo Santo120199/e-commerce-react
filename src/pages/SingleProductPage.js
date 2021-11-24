@@ -20,7 +20,7 @@ const SingleProductPage = () => {
   const {
     single_product_loading: loading,
     single_product_error: error,
-    single_product: products,
+    single_product: product,
     fetchSingleProduct,
   } = useProductsContext()
 
@@ -53,7 +53,7 @@ const SingleProductPage = () => {
     id: sku,
     company,
     images,
-  } = products
+  } = product
 
   return (
     <Wrapper>
@@ -66,7 +66,7 @@ const SingleProductPage = () => {
           <ProductImages images={images} />
           <section className='content'>
             <h2>{name}</h2>
-            <Stars />
+            <Stars stars={stars} reviews={reviews} />
             <h5 className='price'>{formatPrice(price)}</h5>
             <p className='description'>{description}</p>
             <p className='info'>
@@ -82,7 +82,7 @@ const SingleProductPage = () => {
               {company}
             </p>
             <hr />
-            {stock > 0 && <AddToCart />}
+            {stock > 0 && <AddToCart product={product} />}
           </section>
         </div>
       </div>
